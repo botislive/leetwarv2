@@ -1,0 +1,116 @@
+/* ═══════════════════════════════════════════════
+   App.css — Component & Page Specific Styles
+   ═══════════════════════════════════════════════ */
+
+/* Heading font stack */
+.font-heading {
+    font-family: "Arial Black", Impact, Haettenschweiler, sans-serif;
+}
+
+.font-mono-retro {
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* 3D text shadow for headings */
+.text-3d {
+    text-shadow: 2px 2px 0 #808080;
+}
+
+.text-3d-dark {
+    text-shadow: 2px 2px 0 #000000;
+}
+
+/* Beveled badge (like a "NEW!" tag) */
+.badge-hot {
+    background: #ff0000;
+    color: #ffff00;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 2px solid;
+    border-color: #ff5555 #800000 #800000 #ff5555;
+    display: inline-block;
+}
+
+/* VS badge for battle */
+.vs-retro {
+    background: #ffff00;
+    color: #000000;
+    font-family: "Arial Black", Impact, Haettenschweiler, sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 8px 16px;
+    border: 3px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+    text-shadow: 2px 2px 0 #808000;
+}
+
+/* Table styles */
+.table-90s {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+}
+
+.table-90s th {
+    background: #000080;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 12px;
+    border: 2px solid #808080;
+}
+
+.table-90s td {
+    padding: 6px 12px;
+    border: 2px solid #808080;
+}
+
+.table-90s tr:nth-child(even) td {
+    background: #e8e8e8;
+}
+
+.table-90s tr:nth-child(odd) td {
+    background: #ffffff;
+}
+
+/* Alternating row util */
+.row-even {
+    background: #ffffff;
+}
+
+.row-odd {
+    background: #e8e8e8;
+}
+
+/* Marquee bar styling */
+.marquee-bar {
+    background: #000080;
+    color: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+    padding: 6px 0;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-scroll {
+    animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee-bar:hover .marquee-scroll {
+    animation-play-state: paused;
+}
