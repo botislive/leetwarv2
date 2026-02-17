@@ -1,7 +1,5 @@
 const ResultCrd = ({ result, username1, username2, data1, data2 }) => {
   const winnerName = result?.winner || ''
-  const isUser1Winner = winnerName.toLowerCase() === username1.toLowerCase()
-  const winnerAvatar = isUser1Winner ? data1?.profile?.userAvatar : data2?.profile?.userAvatar
 
   // Handle various score formats from the API
   const getScores = () => {
@@ -11,6 +9,30 @@ const ResultCrd = ({ result, username1, username2, data1, data2 }) => {
     return { s1, s2 }
   }
   const { s1, s2 } = getScores()
+
+  const normalize = (value) => String(value || '').trim().toLowerCase()
+  const winnerKey = normalize(winnerName)
+  const user1Keys = [username1, data1?.username, 'user1', 'player1'].map(normalize).filter(Boolean)
+  const user2Keys = [username2, data2?.username, 'user2', 'player2'].map(normalize).filter(Boolean)
+
+  let winnerSide = null
+  if (user1Keys.includes(winnerKey)) winnerSide = 'user1'
+  if (user2Keys.includes(winnerKey)) winnerSide = 'user2'
+
+  if (!winnerSide) {
+    const n1 = Number(s1)
+    const n2 = Number(s2)
+    if (!Number.isNaN(n1) && !Number.isNaN(n2) && n1 !== n2) {
+      winnerSide = n1 > n2 ? 'user1' : 'user2'
+    }
+  }
+
+  const winnerAvatar =
+    winnerSide === 'user1'
+      ? data1?.profile?.userAvatar
+      : winnerSide === 'user2'
+        ? data2?.profile?.userAvatar
+        : null
 
   return (
     <div className="win95-window">
@@ -83,7 +105,7 @@ const ResultCrd = ({ result, username1, username2, data1, data2 }) => {
                 {s1}
               </td>
               <td className="text-center">
-                {isUser1Winner ? (
+                {winnerSide === 'user1' ? (
                   <span className="badge-hot" style={{ background: '#00aa00', borderColor: '#00ff00 #006600 #006600 #00ff00', fontSize: '10px' }}>
                     WINNER!
                   </span>
@@ -100,7 +122,7 @@ const ResultCrd = ({ result, username1, username2, data1, data2 }) => {
                 {s2}
               </td>
               <td className="text-center">
-                {!isUser1Winner ? (
+                {winnerSide === 'user2' ? (
                   <span className="badge-hot" style={{ background: '#00aa00', borderColor: '#00ff00 #006600 #006600 #00ff00', fontSize: '10px' }}>
                     WINNER!
                   </span>

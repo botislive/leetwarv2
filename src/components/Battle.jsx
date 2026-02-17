@@ -63,9 +63,9 @@ const Battle = () => {
 
           <div className="hr-groove" />
 
-          {/* Input Grid */}
+          
           <div className="flex flex-col sm:flex-row items-end gap-4">
-            {/* Player 1 */}
+           
             <div className="flex-1 w-full">
               <label htmlFor="Username1" className="block text-sm font-bold mb-1">
                 👤 Player 1:
