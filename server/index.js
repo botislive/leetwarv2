@@ -13,7 +13,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
 
 async function fetchLeetCodeUser(username) {
   const response = await fetch(`https://leetcode-api-pied.vercel.app/user/${username}`);
@@ -26,6 +25,12 @@ async function fetchLeetCodeUser(username) {
   }
   return userData;
 }
+
+
+app.get("/", (req, res) => {
+  res.send("LeetCode Battle AI Backend Running 🚀");
+});
+
 
 // --- POST /battle-ai ---
 app.post("/battle-ai", async (req, res) => {
@@ -144,4 +149,4 @@ User2: ${JSON.stringify(slim2)}
   }
 });
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+export default app
