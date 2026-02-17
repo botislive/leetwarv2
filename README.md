@@ -1,16 +1,178 @@
-# React + Vite
+# ⚔️ LeetWar V2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LeetWar V2 is a full‑stack web application that compares two LeetCode users and determines a "winner" using AI or a smart scoring algorithm. It fetches real LeetCode statistics, analyzes performance, and gives a fair comparison based on rankings, solved problems, and submissions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
 
-## React Compiler
+Frontend → https://leetwarv2.vercel.app/  
+Backend → https://leetwarv2-server.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+• Compare any two LeetCode users instantly
+• Fetch live LeetCode stats automatically
+• AI‑powered comparison using Gemini
+• Fallback scoring system if AI fails
+• Clean API structure for frontend integration
+• Fully deployable backend (Vercel / Render / Railway)
+
+---
+
+## 🧠 How It Works
+
+1. User enters two LeetCode usernames
+2. Backend fetches stats from LeetCode API
+3. Data is simplified for analysis
+4. Gemini AI compares both users and returns winner + reason
+5. If AI fails → deterministic scoring is used
+
+### Scoring Logic (Fallback)
+
+Score = Total Accepted Submissions + (1,000,000 / Ranking)
+
+Higher score wins.
+
+---
+
+## 🛠️ Tech Stack
+
+Frontend:
+• React
+• Fetch API
+
+Backend:
+• Node.js
+• Express.js
+• node-fetch
+• CORS
+• dotenv
+
+APIs Used:
+• LeetCode Stats API
+• Gemini AI API
+
+---
+
+## 📂 Project Structure
+
+```
+server/
+ ├── index.js
+ ├── package.json
+ ├── .env
+
+Leetwarv2/
+ ├── src/
+ ├── App.jsx
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file inside the server folder:
+
+```
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-1.5-flash
+PORT=5000
+```
+
+---
+
+## ▶️ Running Locally
+
+### 1. Clone Repo
+
+```
+git clone https://github.com/botislive.git
+cd leetwarv2/server
+```
+
+### 2. Install Dependencies
+
+```
+npm install
+```
+
+### 3. Run Server
+
+```
+npm start
+```
+
+Server will run on:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 🌐 API Endpoint
+
+### POST /battle-ai
+
+Request:
+
+```
+{
+  "username1": "user1",
+  "username2": "user2"
+}
+```
+
+Response:
+
+```
+{
+  "winner": "username",
+  "reason": "short explanation",
+  "score": { "user1": 123, "user2": 456 }
+}
+```
+
+---
+
+## ☁️ Deployment Guide
+
+### Vercel
+
+1. Push backend to GitHub
+2. Import project in Vercel
+3. Set environment variables
+4. Deploy
+
+Note: Ensure you export the Express app instead of using `app.listen()` when deploying serverless.
+
+---
+
+## 🎯 Future Improvements
+
+• Add UI leaderboard
+• Store battle history in database
+• Add charts for comparison
+• Support Codeforces / CodeChef users
+• Add authentication
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! Feel free to open issues for suggestions or improvements.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a star on GitHub and share it with your friends preparing for coding interviews!
